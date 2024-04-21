@@ -70,13 +70,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    [4] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_ESC,  KC_TAB,    KC_Q,    KC_W,     KC_E,     KC_R,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG(3),
+      QK_BOOT, XXXXXXX, XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_3,     KC_G,     KC_A,    KC_S,     KC_D,     KC_F,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX,OSM(MOD_LSFT),OSM(MOD_LALT), OSM(MOD_LGUI),OSM(MOD_LCTL), QK_REP,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_4,  KC_LSFT,     KC_Z,    KC_X,     KC_C,     KC_V,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+     XXXXXXX ,XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_1, KC_2,  KC_SPC,     KC_ENT, XXXXXXX, KC_RALT
+                                         XXXXXXX , XXXXXXX, XXXXXXX ,  XXXXXXX   , XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   )
 
@@ -84,30 +84,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 enum combos {
-    J_K_LAYER, // TAB
-    E_R_LAYER, // ALT
-    C_V_LAYER, // CMD
-    D_F_LAYER, // CTL
-    F_J_LAYER, // ESC
+    // Tab and ESC
+    D_F_LAYER,
+    F_J_LAYER,
+
+    // Mod Keys
+    J_K_LAYER,
+
+    // CTRL
+    S_D_LAYER,
+
+    // CMD
+    C_V_LAYER,
+
     COMBO_LENGTH
 };
 
 
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
-    //Number layer
-    const uint16_t PROGMEM j_k_layer[] = { KC_J, KC_K, COMBO_END};
-    const uint16_t PROGMEM c_v_layer[] = { KC_C, KC_V, COMBO_END};
-    const uint16_t PROGMEM e_r_layer[] = { KC_E, KC_R, COMBO_END};
+    //ESC and TAB layer
     const uint16_t PROGMEM d_f_layer[] = { KC_D, KC_F, COMBO_END};
     const uint16_t PROGMEM f_j_layer[] = { KC_F, KC_J, COMBO_END};
+    // MOD Keys
+    const uint16_t PROGMEM j_k_layer[] = { KC_J, KC_K, COMBO_END};
+    // CNTRL
+    const uint16_t PROGMEM s_d_layer[] = { KC_S, KC_D, COMBO_END};
+
+    const uint16_t PROGMEM c_v_layer[] = { KC_C, KC_V, COMBO_END};
 
 
 combo_t key_combos[] = {
-    //Number layer
-    [J_K_LAYER] = COMBO(j_k_layer,KC_TAB),
-    [C_V_LAYER] = COMBO(c_v_layer,OSM(MOD_LGUI)),
-    [D_F_LAYER] = COMBO(d_f_layer,OSM(MOD_LCTL)),
-    [E_R_LAYER] = COMBO(e_r_layer,OSM(MOD_LALT)),
+    //ESC and TAB layer
+    [D_F_LAYER] = COMBO(d_f_layer,KC_TAB),
     [F_J_LAYER] = COMBO(f_j_layer,KC_ESC),
+
+    //MOD Layers
+    [J_K_LAYER] = COMBO(j_k_layer, MO(4)),
+    // CNTRL
+    [S_D_LAYER] = COMBO(s_d_layer, OSM(MOD_LCTL)),
+
+    [C_V_LAYER] = COMBO(c_v_layer, OSM(MOD_LGUI)),
 };
