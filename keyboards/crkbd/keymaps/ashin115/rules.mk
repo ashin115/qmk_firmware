@@ -5,6 +5,6 @@ OLED_DRIVER     = ssd1306
 WPM_ENABLE      = no
 OLED_DRIVER_ENABLE = yes
 LTO_ENABLE      = yes
-COMBO_ENABLE    = yes
+COMBO_ENABLE    = no
 BOOTLOADER = rp2040
 
