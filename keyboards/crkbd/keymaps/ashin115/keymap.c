@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-static char last_key[5] = "None";  // Variable to store the last key pressed
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
@@ -74,6 +73,8 @@ enum layer_names {
 };
 
 #ifdef OLED_ENABLE
+
+static char last_key[5] = "None";  // Variable to store the last key pressed
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (!is_keyboard_master()) {
         return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
@@ -130,7 +131,7 @@ bool oled_task_user(void) {
         //
     } else {
          render_logo();
-         oled_scroll_left();  // Turns on scrolling
+        oled_scroll_left();
     }
     return false;
 }
