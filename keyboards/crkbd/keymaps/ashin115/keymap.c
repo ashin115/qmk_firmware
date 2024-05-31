@@ -5,9 +5,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T, /*                                      */ KC_Y, KC_U, KC_I, KC_O, KC_P, KC_TAB,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G, /*                                      */ KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+        KC_LGUI, KC_A, KC_S, KC_D, KC_F, KC_G, /*                                      */ KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
         //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LGUI, KC_Z, KC_X, KC_C, KC_V, KC_B, /*                                      */ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_LALT,
+        KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B, /*                                      */ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_LALT,
         //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                 MO(2), OSM(MOD_LSFT), KC_ENT, /*                                       */ KC_SPC, MO(1), KC_BSPC
         //`--------------------------'  `--------------------------'
@@ -62,6 +62,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //`--------------------------'  `--------------------------'
         ),
 
+};
+
+
+
+enum combos {
+    // Tab and ESC
+    J_K_LAYER,
+    F_J_LAYER,
+
+    // Mod Keys
+    M_L_LAYER,
+
+
+    // CMD
+    C_V_LAYER,
+
+    COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+// ESC and TAB layer
+const uint16_t PROGMEM j_k_layer[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM f_j_layer[] = {KC_F, KC_J, COMBO_END};
+// MOD Keys
+const uint16_t PROGMEM m_l_layer[] = {KC_M, KC_L, COMBO_END};
+
+const uint16_t PROGMEM c_v_layer[] = {KC_C, KC_V, COMBO_END};
+
+combo_t key_combos[] = {
+    // ESC and TAB layer
+    [J_K_LAYER] = COMBO(j_k_layer, KC_TAB),
+    [F_J_LAYER] = COMBO(f_j_layer, KC_ESC),
+
+    // MOD Layers
+    [M_L_LAYER] = COMBO(m_l_layer, MO(4)),
+
+    [C_V_LAYER] = COMBO(c_v_layer, OSM(MOD_LGUI)),
 };
 
 enum layer_names {
